@@ -60,6 +60,7 @@ Uncomment in `vars.tf` the following:
 ```
 
 - Disable S3 backend for tfstate storage (after this will be use local backend)
+
 Comment in `providers.tf` the following:
 ```
   backend "s3" {
