@@ -51,6 +51,23 @@ Uncomment in `vars.tf` the following:
 #}
 ```
 
+- Define Terraform variables in `vars.tf`
+```
+# AWS Region
+variable "region" {}
+
+variable "profile" {
+  description = "AWS credentials profile you want to use"
+  default     = "default"
+}
+
+# AWS account
+variable "aws_account" {}
+
+# AWS IAM user
+variable "aws_user" {}
+```
+
 - VPC, EKS creation
 ```
 terraform init
