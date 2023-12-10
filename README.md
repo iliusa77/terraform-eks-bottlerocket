@@ -1,9 +1,19 @@
 This repository contains Github Actions pipeline and Terraform modules/resources
 for Amazon VPC and EKS cluster deploy with [`Bottlerocket OS`](https://github.com/bottlerocket-os/bottlerocket) AMI in EKS node groups
 
-## EKS Variables
+## Auto deploy with Github Actions pipeline
 
-- EKS version, EC2 instance types, min/max/desired size in `eks.tf`
+- Create S3 bucket for Terraform backend and DynamoDB table for locking and update `bucket`,`region` and `dynamodb_table` in `providers.tf` section:
+```
+  backend "s3" {
+    bucket = "eks-bottlerocket"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    dynamodb_table = "eks_bottlerocket_terraform_state"
+  }
+```
+
+- Update (if needed) EKS version, EC2 instance types, min/max/desired size in `eks.tf`
 ```
 cluster_version = "1.28"
 instance_types = ["t2.micro", "t2.small"]
@@ -11,9 +21,6 @@ min_size     = 1
 max_size     = 1
 desired_size = 1
 ```
-
-
-## Auto deploy with Github Actions pipeline
 
 - Fork or clone the repository https://github.com/iliusa77/terraform-eks-bottlerocket
 
