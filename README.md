@@ -55,18 +55,25 @@ Uncomment in `vars.tf` the following:
 ```
 #variable "profile" {
 #  description = "AWS credentials profile you want to use"
+#  default     = "default" 
 #}
+```
+
+- Disable S3 backend for tfstate storage (after this will be use local backend)
+Comment in `providers.tf` the following:
+```
+  backend "s3" {
+    bucket = "eks-bottlerocket"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    dynamodb_table = "eks_bottlerocket_terraform_state"
+  }
 ```
 
 - Define Terraform variables in `vars.tf`
 ```
 # AWS Region
 variable "region" {}
-
-variable "profile" {
-  description = "AWS credentials profile you want to use"
-  default     = "default"
-}
 
 # AWS account
 variable "aws_account" {}
@@ -75,7 +82,7 @@ variable "aws_account" {}
 variable "aws_user" {}
 ```
 
-- VPC, EKS creation
+- VPC & EKS creation
 ```
 terraform init
 terraform plan
@@ -88,7 +95,7 @@ aws eks list-clusters
 aws eks update-kubeconfig --region <aws_region> --name eks-bottlerocket-cluster
 ```
 
-- VPC, EKS destroy
+- Cleanup: VPC & EKS destroy
 ```
 terraform destroy
 ```
