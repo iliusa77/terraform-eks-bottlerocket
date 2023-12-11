@@ -28,12 +28,16 @@ desired_size = 1
 
 - In your repository import code from this repository https://github.com/iliusa77/terraform-eks-bottlerocket
 
+- Add AWS credentials in your repository secrets:
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
+
 - Run the pipeline `.github/workflows/eks-deploy.yaml`
 
 - Define the following inputs with your own values:
 ```
-'AWS Access Key ID'     
-'AWS Secret Access Key'     
 'AWS region'     
 'AWS account'     
 'AWS IAM user'     

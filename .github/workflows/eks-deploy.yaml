@@ -12,14 +12,6 @@ on:
         - plan
         - apply
         - destroy
-      aws_access_key_id:
-        description: 'AWS Access Key ID'     
-        required: true
-        default: '' 
-      aws_secret_access_key:
-        description: 'AWS Secret Access Key'     
-        required: true
-        default: '' 
       aws_region:
         description: 'AWS region'     
         required: true
@@ -34,8 +26,8 @@ on:
         default: '' 
 
 env:
-  AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
-  AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ inputs.aws_region }} 
 
 jobs:
