@@ -22,7 +22,9 @@ max_size     = 1
 desired_size = 1
 ```
 
-- Fork or clone the repository https://github.com/iliusa77/terraform-eks-bottlerocket
+- Create your own private repository in Github.
+
+- In your repository import code from this repository https://github.com/iliusa77/terraform-eks-bottlerocket
 
 - Run the pipeline `.github/workflows/eks-deploy.yaml`
 
