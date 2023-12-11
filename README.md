@@ -3,7 +3,9 @@ for Amazon VPC and EKS cluster deploy with [`Bottlerocket OS`](https://github.co
 
 ## Auto deploy with Github Actions pipeline
 
-- Create S3 bucket for Terraform backend and DynamoDB table (with `LockID` Partition key) for locking and update `bucket`,`region` and `dynamodb_table` in `providers.tf` section:
+- In your own AWS account create S3 bucket for Terraform backend and DynamoDB table (with `LockID` Partition key) for locking
+  
+- Update `bucket`,`region` and `dynamodb_table` in `providers.tf` section:
 ```
   backend "s3" {
     bucket = "eks-bottlerocket"
