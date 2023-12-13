@@ -24,6 +24,8 @@ max_size     = 1
 desired_size = 1
 ```
 
+- Define your public SSH key in module.key_pair in `ec2.tf`
+
 - Create your own private repository in Github.
 
 - In your repository import code from this repository https://github.com/iliusa77/terraform-eks-bottlerocket
@@ -102,6 +104,13 @@ terraform apply
 ```
 aws eks list-clusters
 aws eks update-kubeconfig --region <aws_region> --name eks-bottlerocket-cluster
+```
+
+- Checking EKS nodes
+```
+kubectl get nodes -o=custom-columns=NODE:.metadata.name,ARCH:.status.nodeInfo.architecture,OS-Image:.status.nodeInfo.osImage,OS:.status.nodeInfo.operatingSystem,InstanceId:.spec.providerID
+NODE                         ARCH    OS-Image                                OS      InstanceId
+ip-xxxxxxxxxxx.ec2.internal   amd64   Bottlerocket OS 1.16.1 (aws-k8s-1.28)   linux   aws:///us-east-1c/i-xxxxxxxxxxxxxxxxxxx
 ```
 
 - Cleanup: VPC & EKS destroy
